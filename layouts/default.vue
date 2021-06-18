@@ -1,11 +1,24 @@
 <template>
   <div>
+    <welcome-screen />
     <div class="menu-btn">
       <!-- <el-button type="primary" size="default" icon=""></el-button> -->
     </div>
     <Nuxt />
   </div>
 </template>
+
+<script>
+import WelcomeScreen from '~/components/WelcomeScreen.vue';
+
+export default {
+  name: 'DefaultLayout',
+
+  components: {
+    WelcomeScreen,
+  }
+}
+</script>
 
 <style>
 html {
