@@ -1,11 +1,10 @@
 <template>
-  <div class="main-page">
-    <el-input
-      class="main-page__search"
-      suffix-icon="el-icon-search"
-      placeholder="Выберите спорт"
-      v-model="searchText"
-      size="normal" clearable
+  <div class="map-page">
+    <yandex-map
+      class="yaMap"
+      :coords="[43.40059, 39.964513]"
+      :zoom="16.5"
+      :controls="['zoomControl']"
     />
 
     <div class="main-page__cards">
@@ -16,7 +15,6 @@
       />
     </div>
   </div>
-  
 </template>
 
 <script>
@@ -69,6 +67,7 @@ export default {
 }
 </script>
 
+
 <style lang="scss">
 .main-page {
   padding: 63px 16px 0;
@@ -99,3 +98,4 @@ export default {
   }
 }
 </style>
+ 
