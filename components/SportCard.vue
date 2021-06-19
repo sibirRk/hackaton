@@ -1,5 +1,5 @@
 <template>
-  <nuxt-link to="/" class="sport-card">
+  <nuxt-link :to="`/sport/${code}`" class="sport-card">
     <img :src="item.img" class="sport-card__img">
     <span class="sport-card__label">{{ item.label }}</span>
   </nuxt-link>
@@ -12,6 +12,10 @@ export default {
   props: {
     item: {
       type: Object,
+      required: true,
+    },
+    code: {
+      type: Number,
       required: true,
     }
   },
