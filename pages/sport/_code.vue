@@ -15,8 +15,10 @@
     <div class="panels">
       <div class="panel panel_about" v-if="tab === 'about'">
         <section class="section">
-          <h2 class="section-title">Правила</h2>
-
+          <h2 class="section__title">Правила</h2>
+          <article class="section__article">
+            Игра происходит на специальном теннисном столе. Посередине стола находится сетка. При игре используются ракетки, состоящие из деревянного основания, покрытого с двух сторон резиновыми накладками разного цвета, обычно ярко-красного и чёрного. Игра происходит на специальном теннисном столе. Посередине стола находится сетка. При игре используются ракетки, состоящие из деревянного основания, покрытого с двух сторон резиновыми накладками разного цвета, обычно ярко-красного и чёрного.
+          </article>
         </section>
       </div>
       <div class="panel panel_practice" v-if="tab === 'practice'">
@@ -109,6 +111,18 @@ export default {
       &+.el-button {
         margin-left: 0;
       }
+
+      span {
+        font-family: Inter, sans-serif;
+        font-weight: 500;
+        color: $black;
+      }
+
+      &.el-button--primary {
+        span {
+          color: $white;
+        }
+      }
     }
   }
 
@@ -118,13 +132,22 @@ export default {
 
   .section {
     &__title {
+      color: $primary;
       font-size: 24px;
       line-height: 1;
+      margin-bottom: 15px;
     }
 
     &__subtitle {
+      color: $primary;
       font-size: 18px;
       line-height: 20px;
+    }
+
+    &__article {
+      font-size: 16px;
+      line-height: 24px;
+      color: $regulary;
     }
   }
 }
