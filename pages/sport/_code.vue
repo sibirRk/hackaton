@@ -12,21 +12,24 @@
       <el-button :type="tab === 'about' ? 'primary' : ''" size="default" @click="tab = 'about'">О спорте</el-button>
       <el-button :type="tab === 'practice' ? 'primary' : ''" size="default" @click="tab = 'practice'">Практиковаться</el-button>
     </div>
+    
     <div class="panels">
       <div class="panel panel_about" v-if="tab === 'about'">
-        <section class="section">
-          <h2 class="section__title">Правила</h2>
-          <transition name="fade">
-            <article class="section__article" v-html="rulesShort ? rules.slice(0, 230) + '...' : rules"/>
-          </transition>
-          <el-button class="wide" @click="rulesShort = !rulesShort">{{ rulesShort ? 'Еще' : 'Скрыть' }}</el-button>
-        </section>
-        
-        <section class="section">
-          <h2 class="section__title">Определения</h2>
-          <article class="section__article" v-html="glossaryShort ? glossary.slice(0, 230) + '...' : glossary"/>
-          <el-button class="wide" @click="glossaryShort = !glossaryShort">{{ glossaryShort ? 'Еще' : 'Скрыть' }}</el-button>
-        </section>
+        <div class="sport-information">
+          <section class="section">
+            <h2 class="section__title">Правила</h2>
+            <transition name="fade">
+              <article class="section__article" v-html="rulesShort ? rules.slice(0, 230) + '...' : rules"/>
+            </transition>
+            <el-button class="wide" @click="rulesShort = !rulesShort">{{ rulesShort ? 'Еще' : 'Скрыть' }}</el-button>
+          </section>
+          
+          <section class="section">
+            <h2 class="section__title">Определения</h2>
+            <article class="section__article" v-html="glossaryShort ? glossary.slice(0, 230) + '...' : glossary"/>
+            <el-button class="wide" @click="glossaryShort = !glossaryShort">{{ glossaryShort ? 'Еще' : 'Скрыть' }}</el-button>
+          </section>
+        </div>
       </div>
 
       <div class="panel panel_practice" v-if="tab === 'practice'">
