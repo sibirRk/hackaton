@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import ambassadors from '~/data/ambassadors';
 import AmbassadorSlide from '~/components/AmbassadorSlide.vue';
 
 export default {
@@ -30,37 +31,8 @@ export default {
           clickable: true,
         },
       },
-      ambassadors: [
-        {
-          instagram: '@shmirev_max',
-          photo: '/images/ambassadors/shmirev.png',
-          title: 'Максим Шмырёв о своих тренировках',
-        },
-        {
-          instagram: '@shmirev_max',
-          photo: '/images/ambassadors/shmirev.png',
-          title: 'Максим Шмырёв о своих тренировках',
-        },
-        {
-          instagram: '@shmirev_max',
-          photo: '/images/ambassadors/shmirev.png',
-          title: 'Максим Шмырёв о своих тренировках',
-        },
-        {
-          instagram: '@shmirev_max',
-          photo: '/images/ambassadors/shmirev.png',
-          title: 'Максим Шмырёв о своих тренировках',
-        },
-        {
-          instagram: '@shmirev_max',
-          photo: '/images/ambassadors/shmirev.png',
-          title: 'Максим Шмырёв о своих тренировках',
-        },
-      ]
+      ambassadors,
     }
-  },
-
-  props: {
   },
 
   components: {

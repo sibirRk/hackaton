@@ -32,6 +32,7 @@
         </div>
 
         <section class="section">
+          <h2 class="section__title">Наши амбассадоры</h2>
           <our-ambassadors />
         </section>
       </div>
@@ -183,6 +184,7 @@ export default {
       font-size: 24px;
       line-height: 1;
       margin-bottom: 15px;
+      font-weight: 700;
     }
 
     &__subtitle {

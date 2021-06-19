@@ -1,6 +1,6 @@
 <template>
   <div class="ambassador-slide">
-    <nuxt-link to="/">
+    <nuxt-link to="/ambassador/1">
       <a target="blank" class="instagram__wrapper">
         <img src="/images/instagramm.svg" alt="instagram icon" class="instagram__link">
         <span class="instagram__link">{{ ambassador.instagram }}</span>
