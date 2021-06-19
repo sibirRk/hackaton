@@ -1,15 +1,16 @@
 <template>
-  <div class="map-page">
-    <yandex-map
-      class="yaMap"
-      :coords="[43.40059, 39.964513]"
-      :zoom="16.5"
-      :controls="['zoomControl']"
+  <div class="main-page">
+    <el-input
+      class="main-page__search"
+      suffix-icon="el-icon-search"
+      placeholder="Выберите спорт"
+      v-model="searchText"
+      size="normal" clearable
     />
 
     <div class="main-page__cards">
       <sport-card
-        v-for="sport, index in sports"
+        v-for="sport, index in filteredSports"
         :key="index"
         :item="sport"
       />
@@ -57,6 +58,13 @@ export default {
     }
   },
 
+
+  computed: {
+    filteredSports() {
+      return this.sports.filter(el => el.label.toLowerCase().includes(this.searchText.toLowerCase()));
+    }
+  },
+
   async created() {
     const a = await this.$axios.get('http://sport-advisor.shahruslan.ru/api/sports');
   },
@@ -88,6 +96,7 @@ export default {
 
     .el-input__icon {
       color: #606266;
+      height: unset;
     }
   }
 
