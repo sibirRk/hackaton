@@ -117,7 +117,27 @@ export default {
           title: "Святослав Гавронский",
           description: "КМС по настольному теннису и шахматам",
           price: 1500,
-          instagram: "/images/instagramm.svg"
+          rating: "4,9",
+          coach: false,
+          border: true
+        },
+        {
+          image: "/images/items/item-1.png",
+          title: "Святослав Гавронский",
+          description: "КМС по настольному теннису и шахматам",
+          price: 1500,
+          rating: "4,9",
+          coach: false,
+          border: true
+        },
+        {
+          image: "/images/items/item-1.png",
+          title: "Святослав Гавронский",
+          description: "КМС по настольному теннису и шахматам",
+          price: 1500,
+          rating: "4,9",
+          coach: true,
+          border: false
         }
       ]
     };
