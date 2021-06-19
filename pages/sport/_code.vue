@@ -11,5 +11,5 @@ export default {
 
 
 <style lang="scss">
-
+.sport-detail {}
 </style>
