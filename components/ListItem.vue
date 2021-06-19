@@ -63,6 +63,7 @@ export default {
   .title-block {
     display: flex;
     justify-content: space-between;
+    width: 100%;
   }
 
   .image-wrapper {
