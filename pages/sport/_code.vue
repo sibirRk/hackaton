@@ -31,47 +31,73 @@
           >Практиковаться</el-button
         >
       </div>
-
+    
       <div class="panels">
         <div class="panel panel_about" v-if="tab === 'about'">
           <div class="sport-information">
             <section class="section">
               <h2 class="section__title">Правила</h2>
               <transition name="fade">
-                <article
-                  class="section__article"
-                  v-html="rulesShort ? rules.slice(0, 230) + '...' : rules"
-                />
+                <article class="section__article" v-html="rulesShort ? rules.slice(0, 230) + '...' : rules"/>
               </transition>
-              <el-button class="wide" @click="rulesShort = !rulesShort">{{
-                rulesShort ? "Еще" : "Скрыть"
-              }}</el-button>
+              <el-button class="wide" @click="rulesShort = !rulesShort">{{ rulesShort ? 'Еще' : 'Скрыть' }}</el-button>
             </section>
-
+            
             <section class="section">
               <h2 class="section__title">Определения</h2>
-              <article
-                class="section__article"
-                v-html="
-                  glossaryShort ? glossary.slice(0, 230) + '...' : glossary
-                "
-              />
-              <el-button class="wide" @click="glossaryShort = !glossaryShort">{{
-                glossaryShort ? "Еще" : "Скрыть"
-              }}</el-button>
+              <article class="section__article" v-html="glossaryShort ? glossary.slice(0, 230) + '...' : glossary" />
+              <el-button class="wide" @click="glossaryShort = !glossaryShort">{{ glossaryShort ? 'Еще' : 'Скрыть' }}</el-button>
             </section>
           </div>
-          <list-item v-for="(card, index) in cards" :key="index" :item="card" />
+
+          <section class="section">
+            <h2 class="section__title">Наши амбассадоры</h2>
+            <our-ambassadors />
+          </section>
         </div>
 
-        <div class="panel panel_practice" v-if="tab === 'practice'"></div>
+        <div class="panels">
+          <div class="panel panel_about" v-if="tab === 'about'">
+            <div class="sport-information">
+              <section class="section">
+                <h2 class="section__title">Правила</h2>
+                <transition name="fade">
+                  <article
+                    class="section__article"
+                    v-html="rulesShort ? rules.slice(0, 230) + '...' : rules"
+                  />
+                </transition>
+                <el-button class="wide" @click="rulesShort = !rulesShort">{{
+                  rulesShort ? "Еще" : "Скрыть"
+                }}</el-button>
+              </section>
+
+              <section class="section">
+                <h2 class="section__title">Определения</h2>
+                <article
+                  class="section__article"
+                  v-html="
+                    glossaryShort ? glossary.slice(0, 230) + '...' : glossary
+                  "
+                />
+                <el-button class="wide" @click="glossaryShort = !glossaryShort">{{
+                  glossaryShort ? "Еще" : "Скрыть"
+                }}</el-button>
+              </section>
+            </div>
+            <list-item v-for="(card, index) in cards" :key="index" :item="card" />
+          </div>
+
+          <div class="panel panel_practice" v-if="tab === 'practice'"></div>
       </div>
     </div>
   </div>
+</div>
 </template>
 
 <script>
 import ListItem from "@/components/ListItem";
+import OurAmbassadors from '~/components/OurAmbassadors.vue';
 
 export default {
   name: "SportDetail",
@@ -117,7 +143,8 @@ export default {
     }
   },
   components: {
-    ListItem
+    ListItem,
+    OurAmbassadors,
   }
 };
 </script>
@@ -219,6 +246,7 @@ export default {
       font-size: 24px;
       line-height: 1;
       margin-bottom: 15px;
+      font-weight: 700;
     }
 
     &__subtitle {
