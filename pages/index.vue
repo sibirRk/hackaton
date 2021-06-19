@@ -12,8 +12,9 @@
       <sport-card
         v-for="sport, index in filteredSports"
         :key="index"
-        :item="sport"
-        :code="index"
+        :code="sport.code"
+        :image="sport.preview"
+        :label="sport.name"
       />
     </div>
   </div>
@@ -23,51 +24,26 @@
 import SportCard from '@/components/SportCard.vue';
 
 export default {
+  name: 'MainPage',
   data() {
     return {
       searchText: '',
-      sports: [
-        {
-          img: '/images/sports/basketball.png',
-          label: 'Баскетбол',
-        },
-        {
-          img: '/images/sports/basketball.png',
-          label: 'Бадминтон',
-        },
-        {
-          img: '/images/sports/basketball.png',
-          label: 'Бокс',
-        },
-        {
-          img: '/images/sports/basketball.png',
-          label: 'Волейбол',
-        },
-        {
-          img: '/images/sports/basketball.png',
-          label: 'Бейсбол',
-        },
-        {
-          img: '/images/sports/basketball.png',
-          label: 'Баскетбол',
-        },
-        {
-          img: '/images/sports/basketball.png',
-          label: 'Кёрлинг',
-        },
-      ]
+      sports: []
     }
   },
 
 
   computed: {
     filteredSports() {
-      return this.sports.filter(el => el.label.toLowerCase().includes(this.searchText.toLowerCase()));
+      if (!this.sports.length) {
+        return [];
+      }
+      return this.sports.filter(el => el.name.toLowerCase().includes(this.searchText.toLowerCase()));
     }
   },
 
   async created() {
-    const a = await this.$axios.get('http://sport-advisor.shahruslan.ru/api/sports');
+    this.sports = (await this.$axios.get('http://sport-advisor.shahruslan.ru/api/sports')).data;
   },
 
   components: {
