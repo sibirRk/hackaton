@@ -26,10 +26,14 @@
           
           <section class="section">
             <h2 class="section__title">Определения</h2>
-            <article class="section__article" v-html="glossaryShort ? glossary.slice(0, 230) + '...' : glossary"/>
+            <article class="section__article" v-html="glossaryShort ? glossary.slice(0, 230) + '...' : glossary" />
             <el-button class="wide" @click="glossaryShort = !glossaryShort">{{ glossaryShort ? 'Еще' : 'Скрыть' }}</el-button>
           </section>
         </div>
+
+        <section class="section">
+          <our-ambassadors />
+        </section>
       </div>
 
       <div class="panel panel_practice" v-if="tab === 'practice'">
@@ -40,6 +44,8 @@
 </template>
 
 <script>
+import OurAmbassadors from '~/components/OurAmbassadors.vue';
+
 export default {
   name: 'SportDetail',
 
@@ -71,6 +77,10 @@ export default {
       }
       return dots;
     }
+  },
+
+  components: {
+    OurAmbassadors,
   }
 }
 </script>
