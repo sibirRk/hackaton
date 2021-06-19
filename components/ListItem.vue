@@ -20,13 +20,13 @@
           alt="soc-icon"
         />
 
-        <div class="rate" v-if="rating">
-          <img src="/huy.png" alt="" />
+        <div class="rate" v-if="item.rating">
+          <img src="/images/star.png" alt="" />
           <span>{{ item.rating }}</span>
         </div>
       </div>
       <span class="description">{{ item.description }}</span>
-      <el-tag>от {{ item.price }} ₽/час</el-tag>
+      <el-tag class="tag">от {{ item.price }} ₽/час</el-tag>
     </div>
   </div>
 </template>
@@ -37,13 +37,13 @@ export default {
 
   data() {
     return {
-      image: '',
-      title: '',
-      description: '',
+      image: "",
+      title: "",
+      description: "",
       price: 0,
-      instagram:'',
-      profiru: '',
-      rating: ''
+      instagram: "",
+      profiru: "",
+      rating: ""
     };
   },
 
@@ -55,4 +55,51 @@ export default {
 };
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+.list-item {
+  display: flex;
+  align-items: flex-start;
+
+  .title-block {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .image-wrapper {
+    width: 75px;
+    height: 75px;
+    margin-right: 15px;
+  }
+
+  .text-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-grow: 1;
+
+    .title {
+      font-weight: bold;
+      font-size: 14px;
+      line-height: 20px;
+      color: #303133;
+    }
+    .description {
+      font-weight: 500;
+      font-size: 12px;
+      line-height: 20px;
+      color: #909399;
+    }
+  }
+
+  .tag {
+    height: 28px;
+    background-color: $blue;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 24px;
+    color: #ffffff;
+    margin-top: 7px;
+  }
+}
+</style>
