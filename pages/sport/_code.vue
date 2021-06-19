@@ -21,14 +21,15 @@
           </transition>
           <el-button class="wide" @click="rulesShort = !rulesShort">{{ rulesShort ? 'Еще' : 'Скрыть' }}</el-button>
         </section>
+        
+        <section class="section">
+          <h2 class="section__title">Определения</h2>
+          <article class="section__article" v-html="glossaryShort ? glossary.slice(0, 230) + '...' : glossary"/>
+          <el-button class="wide" @click="glossaryShort = !glossaryShort">{{ glossaryShort ? 'Еще' : 'Скрыть' }}</el-button>
+        </section>
       </div>
 
       <div class="panel panel_practice" v-if="tab === 'practice'">
-        <section class="section">
-          <h2 class="section__title">Правила</h2>
-          <article class="section__article" v-html="rulesShort ? rules.slice(0, 230) + '...' : rules"/>
-          <el-button class="wide" @click="rulesShort = !rulesShort">{{ rulesShort ? 'Еще' : 'Скрыть' }}</el-button>
-        </section>
       </div>
     </div>
   </div>
@@ -162,6 +163,8 @@ export default {
   }
 
   .section {
+    margin-bottom: 40px;
+
     &__title {
       color: $primary;
       font-size: 24px;
@@ -184,13 +187,16 @@ export default {
       h3 {
         font-size: 16px;
         line-height: 24px;
-        color: $regulary;
+        color: $primary;
+        font-weight: 700;
+        margin-bottom: 4px;
       }
 
       p {
         color: $regulary;
         font-size: 16px;
         line-height: 24px;
+        margin-bottom: 16px;
       }
     }
   }
