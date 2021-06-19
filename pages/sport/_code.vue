@@ -225,6 +225,7 @@ export default {
 
   .tabs-wrapper {
     display: flex;
+    margin-bottom: 40px;
 
     .el-button {
       width: 100%;
