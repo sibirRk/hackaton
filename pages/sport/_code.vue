@@ -13,8 +13,14 @@
       <el-button :type="tab === 'practice' ? 'primary' : ''" size="default" @click="tab = 'practice'">Практиковаться</el-button>
     </div>
     <div class="panels">
-      <div class="panel panel_about" v-if="tab === 'about'">1</div>
-      <div class="panel panel_practice" v-if="tab === 'practice'">2</div>
+      <div class="panel panel_about" v-if="tab === 'about'">
+        <section class="section">
+          <h2 class="section-title">Правила</h2>
+
+        </section>
+      </div>
+      <div class="panel panel_practice" v-if="tab === 'practice'">
+      </div>
     </div>
   </div>
 </div>
@@ -103,6 +109,22 @@ export default {
       &+.el-button {
         margin-left: 0;
       }
+    }
+  }
+
+  .panel {
+    padding: 40px 0;
+  }
+
+  .section {
+    &__title {
+      font-size: 24px;
+      line-height: 1;
+    }
+
+    &__subtitle {
+      font-size: 18px;
+      line-height: 20px;
     }
   }
 }
