@@ -84,8 +84,16 @@
                   glossaryShort ? "Еще" : "Скрыть"
                 }}</el-button>
               </section>
+
+              <section class="section">
+                <h2 class="section__title">Ваши расходы на инвентарь</h2>
+                <list-item v-for="(card, index) in cards" :key="index" :item="card" />
+                <div class="spendings">
+                  <span class="spendings__total">Итого:</span>
+                  <span class="spendings__sum">от {{ spendingsTotal }} ₽</span>
+                </div>
+              </section>
             </div>
-            <list-item v-for="(card, index) in cards" :key="index" :item="card" />
           </div>
 
           <div class="panel panel_practice" v-if="tab === 'practice'"></div>
@@ -113,12 +121,19 @@ export default {
       glossaryShort: true,
       cards: [
         {
-          image: "/images/items/item-1.png",
-          title: "Святослав Гавронский",
-          description: "КМС по настольному теннису и шахматам",
-          price: 1500,
+          image: "/images/items/item-2.png",
+          title: "Ракетка для настольного тенниса",
+          description: "Donic Waldner 700 черный",
+          price: 2780,
           instagram: "/images/instagramm.svg"
-        }
+        },
+        {
+          image: "/images/items/item-1.png",
+          title: "Мячики для настольного тенниса",
+          description: "Donic Waldner 700 черный",
+          price: 720,
+          instagram: "/images/instagramm.svg"
+        },
       ]
     };
   },
@@ -130,6 +145,14 @@ export default {
 
     printGlossary() {
       return this.printShort(this.glossaryShort, this.glossary);
+    },
+
+    spendingsTotal() {
+      let sum = 0;
+      this.cards.forEach(el => {
+        sum += el.price;
+      })
+      return sum;
     }
   },
 
@@ -235,7 +258,13 @@ export default {
   }
 
   .panel {
-    padding: 40px 0;
+    padding-bottom: 40px;
+
+    .sport-information {
+      & + .section {
+        margin-bottom: 0;
+      }
+    }
   }
 
   .section {
@@ -276,6 +305,14 @@ export default {
         margin-bottom: 16px;
       }
     }
+  }
+
+  .spendings {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: bold;
   }
 }
 </style>
