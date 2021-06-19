@@ -158,7 +158,7 @@ export default {
     font-size: 14px;
     line-height: 20px;
     text-align: center;
-    color: #424CFF;
+    color: $blue;
   }
 
   .search-btn-wrapper {

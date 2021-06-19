@@ -44,7 +44,7 @@ export default {
   }
 
   &__label {
-    color: #303133;
+    color: $primary;
     font-size: 16px;
     line-height: 20px;
     font-weight: bold;

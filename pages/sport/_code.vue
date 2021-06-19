@@ -79,7 +79,7 @@ export default {
     }
 
     &__description {
-      color: #dcdfe6;
+      color: $base;
       font-size: 16px;
       line-height: 24px;
       font-weight: 500;

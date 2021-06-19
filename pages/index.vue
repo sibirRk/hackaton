@@ -59,20 +59,20 @@ export default {
 
   &__search {
     input {
-      border: 1px solid #DCDFE6;
+      border: 1px solid $base;
       box-sizing: border-box;
       border-radius: 4px;
       // color: $text-main-color;
       margin-bottom: 16px;
 
       &::placeholder {
-        color: #606266;
+        color: $regulary;
         font-weight: 500;
       }
     }
 
     .el-input__icon {
-      color: #606266;
+      color: $regulary;
       height: unset;
     }
   }
