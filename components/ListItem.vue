@@ -1,14 +1,32 @@
 <template>
   <div class="list-item">
     <div class="image-wrapper">
-      <img :src="image" alt="" />
+      <img :src="item.image" alt="" />
     </div>
     <div class="text-content">
       <div class="title-block">
-        <span class="title"> {{ title }} </span>
+        <span class="title"> {{ item.title }} </span>
+
+        <img
+          v-if="item.instagram"
+          class="social-icon"
+          :src="item.instagram"
+          alt="soc-icon"
+        />
+        <img
+          v-if="item.profiru"
+          class="social-icon"
+          :src="item.profiru"
+          alt="soc-icon"
+        />
+
+        <div class="rate" v-if="rating">
+          <img src="/huy.png" alt="" />
+          <span>{{ item.rating }}</span>
+        </div>
       </div>
-      <span class="description">{{ description }}</span>
-      <el-tag>от {{ price }} ₽/час</el-tag>
+      <span class="description">{{ item.description }}</span>
+      <el-tag>от {{ item.price }} ₽/час</el-tag>
     </div>
   </div>
 </template>
@@ -17,19 +35,21 @@
 export default {
   name: "ListItem",
 
+  data() {
+    return {
+      image: '',
+      title: '',
+      description: '',
+      price: 0,
+      instagram:'',
+      profiru: '',
+      rating: ''
+    };
+  },
+
   props: {
-    image: {
-      type: String
-    },
-    title: {
-      type: String,
-      required: true
-    },
-    description: {
-      type: String
-    },
-    price: {
-      type: Number
+    item: {
+      type: Object
     }
   }
 };
