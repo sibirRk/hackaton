@@ -11,7 +11,7 @@ export default {
 
   props: {
     code: {
-      type: Number,
+      type: String,
       required: true,
     },
     image: {
