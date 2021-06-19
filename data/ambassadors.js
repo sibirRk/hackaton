@@ -12,21 +12,21 @@ export default [
   {
     instagram: '@shmirev_max',
     photo: '/images/ambassadors/shmirev.png',
-    title: 'Максим Шмырёв о своих тренировках',
+    title: 'Максим Шмырёв о чужих тренировках',
   },
   {
     instagram: '@shmirev_max',
     photo: '/images/ambassadors/shmirev.png',
-    title: 'Максим Шмырёв о своих тренировках',
+    title: 'Максим Шмырёв о своих подвигах',
   },
   {
     instagram: '@shmirev_max',
     photo: '/images/ambassadors/shmirev.png',
-    title: 'Максим Шмырёв о своих тренировках',
+    title: 'Максим Шмырёв о своих девушках',
   },
   {
     instagram: '@shmirev_max',
     photo: '/images/ambassadors/shmirev.png',
-    title: 'Максим Шмырёв о своих тренировках',
+    title: 'Максим Шмырёв удивляется, что вы увидели все слайды',
   },
 ]
