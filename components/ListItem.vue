@@ -1,6 +1,6 @@
 <template>
-  <div class="list-item">
-    <div class="image-wrapper">
+  <div class="list-item" :class="{borderTransporent: !item.border}">
+    <div class="image-wrapper" :class="{radius: item.coach}">
       <img :src="item.image" alt="" />
     </div>
     <div class="text-content">
@@ -21,12 +21,12 @@
         />
 
         <div class="rate" v-if="item.rating">
-          <img src="/images/star.png" alt="" />
+          <img src="/images/star.svg" alt="" />
           <span>{{ item.rating }}</span>
         </div>
       </div>
       <span class="description">{{ item.description }}</span>
-      <el-tag class="tag">от {{ item.price }} ₽/час</el-tag>
+      <el-tag class="tag">от {{ item.price.toLocaleString() }} ₽/час</el-tag>
     </div>
   </div>
 </template>
@@ -43,7 +43,9 @@ export default {
       price: 0,
       instagram: "",
       profiru: "",
-      rating: ""
+      rating: "",
+      border: null,
+      coach: null
     };
   },
 
@@ -59,6 +61,13 @@ export default {
 .list-item {
   display: flex;
   align-items: flex-start;
+  border-bottom: 1px solid #E4E7ED;
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+
+  &.borderTransporent {
+    border-color: transparent
+  }
 
   .title-block {
     display: flex;
@@ -70,7 +79,14 @@ export default {
     width: 75px;
     height: 75px;
     margin-right: 15px;
+
   }
+
+  .radius {
+      img {
+        border-radius: 50%;
+      }
+    }
 
   .text-content {
     display: flex;
