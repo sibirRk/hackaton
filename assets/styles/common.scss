@@ -3,6 +3,10 @@ body {
 }
 
 .el-button {
+  &.el-button--primary {
+    background-color: $blue;
+  }
+
   &.wide, &.wide.el-button-default {
     width: 100%;
   }

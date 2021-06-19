@@ -1,5 +1,5 @@
 <template>
-  <div class="list-item" :class="{borderTransporent: !item.border}">
+  <div class="list-item" :class="{ 'border-transparent': !border}">
     <div class="image-wrapper" :class="{radius: item.coach}">
       <img :src="item.image" alt="" />
     </div>
@@ -10,13 +10,14 @@
         <img
           v-if="item.instagram"
           class="social-icon"
-          :src="item.instagram"
+          src="/images/instagramm.svg"
           alt="soc-icon"
         />
+
         <img
           v-if="item.profiru"
           class="social-icon"
-          :src="item.profiru"
+          src="/images/profiru.svg"
           alt="soc-icon"
         />
 
@@ -44,14 +45,19 @@ export default {
       instagram: "",
       profiru: "",
       rating: "",
-      border: null,
-      coach: null
     };
   },
 
   props: {
     item: {
-      type: Object
+      type: Object,
+    },
+    border: {
+      type: Boolean,
+      default: true,
+    },
+    coach: {
+      type: Boolean,
     }
   }
 };
@@ -65,8 +71,8 @@ export default {
   padding-bottom: 16px;
   margin-bottom: 16px;
 
-  &.borderTransporent {
-    border-color: transparent
+  &.border-transparent {
+    border-color: transparent;
   }
 
   .title-block {
