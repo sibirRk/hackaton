@@ -145,6 +145,7 @@ export default {
     background-color: #fff;
     opacity: 1;
     transition: all .2s;
+    margin: 0 6px;
 
     &-active {
       width: 40px;

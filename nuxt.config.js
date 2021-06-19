@@ -29,6 +29,7 @@ export default {
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
     '@/assets/styles/reset.scss',
+    '@/assets/styles/colors.scss',
     '@/assets/styles/common.scss',
     'element-ui/lib/theme-chalk/index.css'
   ],
@@ -45,6 +46,7 @@ export default {
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
+    // '@nuxtjs/style-resources',
     '@nuxtjs/google-fonts',
   ],
 
@@ -58,6 +60,10 @@ export default {
 
   googleFonts: {
     Inter: true,
+  },
+
+  styleResources: {
+    // scss: ['./assets/styles/*.scss'],
   },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
