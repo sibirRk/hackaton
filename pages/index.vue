@@ -13,6 +13,7 @@
         v-for="sport, index in filteredSports"
         :key="index"
         :item="sport"
+        :code="index"
       />
     </div>
   </div>
