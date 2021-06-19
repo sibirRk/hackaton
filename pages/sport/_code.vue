@@ -16,12 +16,19 @@
       <div class="panel panel_about" v-if="tab === 'about'">
         <section class="section">
           <h2 class="section__title">Правила</h2>
-          <article class="section__article">
-            Игра происходит на специальном теннисном столе. Посередине стола находится сетка. При игре используются ракетки, состоящие из деревянного основания, покрытого с двух сторон резиновыми накладками разного цвета, обычно ярко-красного и чёрного. Игра происходит на специальном теннисном столе. Посередине стола находится сетка. При игре используются ракетки, состоящие из деревянного основания, покрытого с двух сторон резиновыми накладками разного цвета, обычно ярко-красного и чёрного.
-          </article>
+          <transition name="fade">
+            <article class="section__article" v-html="rulesShort ? rules.slice(0, 230) + '...' : rules"/>
+          </transition>
+          <el-button class="wide" @click="rulesShort = !rulesShort">{{ rulesShort ? 'Еще' : 'Скрыть' }}</el-button>
         </section>
       </div>
+
       <div class="panel panel_practice" v-if="tab === 'practice'">
+        <section class="section">
+          <h2 class="section__title">Правила</h2>
+          <article class="section__article" v-html="rulesShort ? rules.slice(0, 230) + '...' : rules"/>
+          <el-button class="wide" @click="rulesShort = !rulesShort">{{ rulesShort ? 'Еще' : 'Скрыть' }}</el-button>
+        </section>
       </div>
     </div>
   </div>
@@ -35,6 +42,30 @@ export default {
   data() {
     return {
       tab: 'about',
+      rules: '<p>Игра происходит на специальном теннисном столе. Посередине стола находится сетка. При игре используются ракетки, состоящие из деревянного основания, покрытого с двух сторон резиновыми накладками разного цвета, обычно ярко-красного и чёрного. Игра происходит на специальном теннисном столе. Посередине стола находится сетка. При игре используются ракетки, состоящие из деревянного основания, покрытого с двух сторон резиновыми накладками разного цвета, обычно ярко-красного и чёрного.</p>',
+      rulesShort: true,
+      glossary: '<h3>Розыгрыш</h3> <p>период времени, когда мяч находится в игре</p> <h3>Мяч в игре</h3> <p>считается с последнего момента нахождения его на неподвижной ладони свободной кисти перед намеренным подбрасыванием его в подаче до тех пор, пока не будет решено, что розыгрыш следует переиграть или он завершён присуждением очка</p> <h3>Переигровка</h3> <p>розыгрыш, результат которого не засчитан</p>',
+      glossaryShort: true,
+    }
+  },
+
+  computed: {
+    printRules() {
+      return this.printShort(this.rulesShort, this.rules);
+    },
+
+    printGlossary() {
+      return this.printShort(this.glossaryShort, this.glossary);
+    },
+  },
+
+  methods: {
+    printShort(toggle, string) {
+      if (toggle) {
+        const dots = string < 230 ? '' : '...';
+        return string.slice(0, 230) + dots;
+      }
+      return dots;
     }
   }
 }
@@ -148,6 +179,19 @@ export default {
       font-size: 16px;
       line-height: 24px;
       color: $regulary;
+      margin-bottom: 16px;
+
+      h3 {
+        font-size: 16px;
+        line-height: 24px;
+        color: $regulary;
+      }
+
+      p {
+        color: $regulary;
+        font-size: 16px;
+        line-height: 24px;
+      }
     }
   }
 }
