@@ -1,7 +1,7 @@
 <template>
   <nuxt-link :to="`/sport/${code}`" class="sport-card">
-    <img :src="item.img" class="sport-card__img">
-    <span class="sport-card__label">{{ item.label }}</span>
+    <img :src="image || '/images/sports/basketball.png'" class="sport-card__img">
+    <span class="sport-card__label">{{ label }}</span>
   </nuxt-link>
 </template>
 
@@ -10,14 +10,21 @@ export default {
   name: 'SportCard',
 
   props: {
-    item: {
-      type: Object,
-      required: true,
-    },
     code: {
       type: Number,
       required: true,
-    }
+    },
+    image: {
+      type: String,
+    },
+    label: {
+      type: String,
+      required: true,
+    },
+    description: {
+      type: String,
+      required: true,
+    },
   },
 }
 </script>
@@ -34,6 +41,7 @@ export default {
 
   &__img {
     margin-bottom: 28px;
+    max-height: 100px;
   }
 
   &__label {
