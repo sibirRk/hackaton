@@ -144,8 +144,9 @@
 
             <section class="section">
               <h2 class="section__title">Выберите тренера</h2>
-
-              <list-item v-for="(card, index) in printCoaches" :key="index" :item="card" border />
+              <nuxt-link to="/coach/coach">
+                <list-item v-for="(card, index) in printCoaches" :key="index" :item="card" border />
+              </nuxt-link>
               <el-button class="wide" @click="allCoaches = !allCoaches">{{ !allCoaches ? 'Еще' : 'Скрыть' }}</el-button>
             </section>
           </div>
