@@ -28,8 +28,8 @@
           <span>{{ item.rating }}</span>
         </div>
       </div>
-      <span class="description">{{ item.description }}</span>
-      <el-tag class="tag">от {{ item.price.toLocaleString() }} ₽/час</el-tag>
+      <span class="description">{{ item.description || item.address }}</span>
+      <el-tag class="tag" v-if="item.price">от {{ item.price.toLocaleString() }} ₽/час</el-tag>
     </div>
   </div>
 </template>

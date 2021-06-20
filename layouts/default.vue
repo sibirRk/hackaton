@@ -1,6 +1,8 @@
 <template>
   <div>
     <welcome-screen />
+    <el-button class="back-btn" type="primary" size="small" @click="route">Назад</el-button>
+    
     <div class="menu-btn">
       <!-- <el-button type="primary" size="default" icon=""></el-button> -->
     </div>
@@ -14,6 +16,12 @@ import WelcomeScreen from '~/components/WelcomeScreen.vue';
 export default {
   name: 'DefaultLayout',
 
+  methods: {
+    route() {
+      window.history.back();
+    }
+  },
+
   components: {
     WelcomeScreen,
   }
@@ -21,6 +29,14 @@ export default {
 </script>
 
 <style>
+.back-btn {
+  position: fixed;
+  top: 12px;
+  left: 16px;
+  z-index: 9999;
+  border: none;
+}
+
 html {
   font-family:
     'Source Sans Pro',

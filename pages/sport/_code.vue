@@ -2,9 +2,10 @@
   <div class="sport-detail">
     <div class="video__wrapper">
       <video
+        v-if="sport && sport.video"
         autoplay
         loop
-        src="/video/header.mp4"
+        :src="sport.video"
         muted="muted"
         class="video"
       ></video>
@@ -141,9 +142,6 @@
 
             <section class="section">
               <h2 class="section__title">Выберите тренера</h2>
-              <div class="list-type-selector" @click="map = !map">
-                {{ map ? 'Списком' : 'На карте' }}
-              </div>
 
               <list-item v-for="(card, index) in printCoaches" :key="index" :item="card" border />
               <el-button class="wide" @click="allCoaches = !allCoaches">{{ !allCoaches ? 'Еще' : 'Скрыть' }}</el-button>
@@ -156,8 +154,7 @@
 </template>
 
 <script>
-import coaches from '~/data/coaches';
-import platforms from '~/data/platforms';
+// import coaches from '~/data/coaches';
 import ListItem from "@/components/ListItem";
 import OurAmbassadors from '~/components/OurAmbassadors.vue';
 import MapPage from '~/pages/map.vue';
@@ -170,15 +167,13 @@ export default {
       sport: {},
       tab: 'about',
       map: false,
-      coaches,
-      platforms,
+      // coaches,
       allPlatforms: false,
       allCoaches: false,
       // rules:
       //   "<p>Игра происходит на специальном теннисном столе. Посередине стола находится сетка. При игре используются ракетки, состоящие из деревянного основания, покрытого с двух сторон резиновыми накладками разного цвета, обычно ярко-красного и чёрного. Игра происходит на специальном теннисном столе. Посередине стола находится сетка. При игре используются ракетки, состоящие из деревянного основания, покрытого с двух сторон резиновыми накладками разного цвета, обычно ярко-красного и чёрного.</p>",
       rulesShort: true,
-      glossary:
-        "<h3>Розыгрыш</h3> <p>период времени, когда мяч находится в игре</p> <h3>Мяч в игре</h3> <p>считается с последнего момента нахождения его на неподвижной ладони свободной кисти перед намеренным подбрасыванием его в подаче до тех пор, пока не будет решено, что розыгрыш следует переиграть или он завершён присуждением очка</p> <h3>Переигровка</h3> <p>розыгрыш, результат которого не засчитан</p>",
+      // glossary: "<h3>Розыгрыш</h3> <p>период времени, когда мяч находится в игре</p> <h3>Мяч в игре</h3> <p>считается с последнего момента нахождения его на неподвижной ладони свободной кисти перед намеренным подбрасыванием его в подаче до тех пор, пока не будет решено, что розыгрыш следует переиграть или он завершён присуждением очка</p> <h3>Переигровка</h3> <p>розыгрыш, результат которого не засчитан</p>",
       glossaryShort: true,
       // cards: [
       //   {
@@ -235,6 +230,14 @@ export default {
         return [];
       }
       return this.sport.inventories;
+    },
+
+    platforms() {
+      return this.sport && this.sport.objects ? this.sport.objects : [];
+    },
+
+    coaches() {
+      return this.sport && this.sport.trainers ? this.sport.trainers : [];
     },
 
     printRules() {
