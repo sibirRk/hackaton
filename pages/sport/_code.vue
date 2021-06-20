@@ -9,11 +9,8 @@
         class="video"
       ></video>
       <div class="video__info">
-        <h1 class="video__title">Настольный теннис</h1>
-        <p class="video__description">
-          Игра происходит на специальном теннисном столе. Посередине стола
-          находится сетка...
-        </p>
+        <h1 class="video__title" v-if="sport.name">{{ sport.name }}</h1>
+        <p class="video__description" v-if="sport.description">{{ sport.description.slice(0, 100) + '...' }}</p>
       </div>
     </div>
     <div class="sport__container">
@@ -35,7 +32,7 @@
       <div class="panels">
         <div class="panel panel_about" v-if="tab === 'about'">
           <div class="sport-information">
-            <section class="section">
+            <section class="section" v-if="sport && sport.rules">
               <h2 class="section__title">Правила</h2>
               <transition name="fade">
                 <article class="section__article" v-html="rulesShort ? rules.slice(0, 230) + '...' : rules"/>
@@ -43,7 +40,7 @@
               <el-button class="wide" @click="rulesShort = !rulesShort">{{ rulesShort ? 'Еще' : 'Скрыть' }}</el-button>
             </section>
             
-            <section class="section">
+            <section class="section" v-if="sport && sport.terms">
               <h2 class="section__title">Определения</h2>
               <article class="section__article" v-html="glossaryShort ? glossary.slice(0, 230) + '...' : glossary" />
               <el-button class="wide" @click="glossaryShort = !glossaryShort">{{ glossaryShort ? 'Еще' : 'Скрыть' }}</el-button>
@@ -170,32 +167,33 @@ export default {
 
   data() {
     return {
+      sport: {},
       tab: 'about',
       map: false,
       coaches,
       platforms,
       allPlatforms: false,
       allCoaches: false,
-      rules:
-        "<p>Игра происходит на специальном теннисном столе. Посередине стола находится сетка. При игре используются ракетки, состоящие из деревянного основания, покрытого с двух сторон резиновыми накладками разного цвета, обычно ярко-красного и чёрного. Игра происходит на специальном теннисном столе. Посередине стола находится сетка. При игре используются ракетки, состоящие из деревянного основания, покрытого с двух сторон резиновыми накладками разного цвета, обычно ярко-красного и чёрного.</p>",
+      // rules:
+      //   "<p>Игра происходит на специальном теннисном столе. Посередине стола находится сетка. При игре используются ракетки, состоящие из деревянного основания, покрытого с двух сторон резиновыми накладками разного цвета, обычно ярко-красного и чёрного. Игра происходит на специальном теннисном столе. Посередине стола находится сетка. При игре используются ракетки, состоящие из деревянного основания, покрытого с двух сторон резиновыми накладками разного цвета, обычно ярко-красного и чёрного.</p>",
       rulesShort: true,
       glossary:
         "<h3>Розыгрыш</h3> <p>период времени, когда мяч находится в игре</p> <h3>Мяч в игре</h3> <p>считается с последнего момента нахождения его на неподвижной ладони свободной кисти перед намеренным подбрасыванием его в подаче до тех пор, пока не будет решено, что розыгрыш следует переиграть или он завершён присуждением очка</p> <h3>Переигровка</h3> <p>розыгрыш, результат которого не засчитан</p>",
       glossaryShort: true,
-      cards: [
-        {
-          image: "/images/items/item-2.png",
-          title: "Ракетка для настольного тенниса",
-          description: "Donic Waldner 700 черный",
-          price: 2780,
-        },
-        {
-          image: "/images/items/item-1.png",
-          title: "Мячики для настольного тенниса",
-          description: "Donic Waldner 700 черный",
-          price: 720,
-        },
-      ],
+      // cards: [
+      //   {
+      //     image: "/images/items/item-2.png",
+      //     title: "Ракетка для настольного тенниса",
+      //     description: "Donic Waldner 700 черный",
+      //     price: 2780,
+      //   },
+      //   {
+      //     image: "/images/items/item-1.png",
+      //     title: "Мячики для настольного тенниса",
+      //     description: "Donic Waldner 700 черный",
+      //     price: 720,
+      //   },
+      // ],
       howToTrainVideos: [
         {
           url: '',
@@ -216,6 +214,25 @@ export default {
   },
 
   computed: {
+    code() {
+      return this.$route.params.code;
+    },
+
+    rules() {
+      return this.sport && this.sport.rules ? this.sport.rules : '';
+    },
+
+    glossary() {
+      return this.sport && this.sport.terms ? this.sport.terms : '';
+    },
+
+    cards() {
+      if (!(this.sport && this.sport.inventories)) {
+        return [];
+      }
+      return this.sport.inventories;
+    },
+
     printRules() {
       return this.printShort(this.rulesShort, this.rules);
     },
@@ -256,6 +273,10 @@ export default {
 
       return this.coaches.slice(0, 3);      
     }
+  },
+
+  async created() {
+    this.sport = (await this.$axios.get(`http://sport-advisor.shahruslan.ru/api/sports/${this.code}`)).data;
   },
 
   methods: {
