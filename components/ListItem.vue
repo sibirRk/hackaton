@@ -1,5 +1,5 @@
 <template>
-  <div class="list-item" :class="{borderTransporent: !item.border}">
+  <div class="list-item" :class="{ 'border-transparent': !border}">
     <div class="image-wrapper" :class="{radius: item.coach}">
       <img :src="item.image" alt="" />
     </div>
@@ -7,18 +7,21 @@
       <div class="title-block">
         <span class="title"> {{ item.title }} </span>
 
-        <img
-          v-if="item.instagram"
-          class="social-icon"
-          :src="item.instagram"
-          alt="soc-icon"
-        />
-        <img
-          v-if="item.profiru"
-          class="social-icon"
-          :src="item.profiru"
-          alt="soc-icon"
-        />
+        <a :href="item.instagram" v-if="item.instagram" target="_blank">
+          <img
+            class="social-icon"
+            src="/images/instagramm.svg"
+            alt="soc-icon"
+          />
+        </a>
+
+        <a :href="item.profiru" v-if="item.profiru" target="_blank">
+          <img
+            class="social-icon"
+            src="/images/profiru.svg"
+            alt="soc-icon"
+          />
+        </a>
 
         <div class="rate" v-if="item.rating">
           <img src="/images/star.svg" alt="" />
@@ -44,14 +47,19 @@ export default {
       instagram: "",
       profiru: "",
       rating: "",
-      border: null,
-      coach: null
     };
   },
 
   props: {
     item: {
-      type: Object
+      type: Object,
+    },
+    border: {
+      type: Boolean,
+      default: true,
+    },
+    coach: {
+      type: Boolean,
     }
   }
 };
@@ -65,8 +73,8 @@ export default {
   padding-bottom: 16px;
   margin-bottom: 16px;
 
-  &.borderTransporent {
-    border-color: transparent
+  &.border-transparent {
+    border-color: transparent;
   }
 
   .title-block {

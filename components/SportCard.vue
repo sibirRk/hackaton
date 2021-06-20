@@ -50,6 +50,7 @@ export default {
     font-weight: bold;
     text-align: center;
     border-bottom: unset;
+    padding: 0 10px;
   }
 }
 </style>
