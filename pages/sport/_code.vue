@@ -131,7 +131,7 @@
               </div>
 
               <template v-if="!map">
-                <nuxt-link to="/platform/1">
+                <nuxt-link class="nuxt-link" to="/platform/1">
                   <list-item v-for="(card, index) in printPlatforms" :key="index" :item="card" border />
                 </nuxt-link>
                 <el-button class="wide" @click="allPlatforms = !allPlatforms">{{ !allPlatforms ? 'Еще' : 'Скрыть' }}</el-button>
