@@ -52,7 +52,7 @@
 
           <section class="section">
             <h2 class="section__title">Наши амбассадоры</h2>
-            <our-ambassadors />
+            <our-ambassadors :ambassadors="ambassadors" :key="index" />
           </section>
         </div>
 
@@ -98,7 +98,7 @@
 <script>
 import ListItem from "@/components/ListItem";
 import OurAmbassadors from '~/components/OurAmbassadors.vue';
-
+import ambassadors from '~/data/ambassadors';
 export default {
   name: "SportDetail",
 
@@ -139,7 +139,8 @@ export default {
           coach: true,
           border: false
         }
-      ]
+      ],
+      ambassadors
     };
   },
 

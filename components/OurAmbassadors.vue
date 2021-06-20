@@ -31,7 +31,12 @@ export default {
           clickable: true,
         },
       },
-      ambassadors,
+    }
+  },
+
+  props: {
+    ambassadors: {
+      type: Array
     }
   },
 
