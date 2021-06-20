@@ -49,7 +49,7 @@
 
           <section class="section">
             <h2 class="section__title">Наши амбассадоры</h2>
-            <our-ambassadors />
+            <our-ambassadors :ambassadors="ambassadors" :key="index" />
           </section>
         </div>
 
