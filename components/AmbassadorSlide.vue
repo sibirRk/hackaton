@@ -7,8 +7,8 @@
         <span class="instagram__link">{{ ambassador.instagram }}</span>
       </a>
 
-      <span class="ambassador__title" v-if="ambassador.title">{{ ambassador.title }}</span>
-      <img :src="ambassador.photo" alt="ambassador photo" class="ambassador__image">
+      <span class="ambassador__title" v-if="ambassador.title || ambassador.slide_title">{{ ambassador.title || ambassador.slide_title }}</span>
+      <img :src="ambassador.photo || ambassador.image" alt="ambassador photo" class="ambassador__image">
     </nuxt-link>
   </div>
 </template>
@@ -46,6 +46,7 @@ export default {
       position: absolute;
       top: 20px;
       left: 16px;
+      z-index: 1;
 
       display: flex;
       align-items: center;
@@ -83,10 +84,15 @@ export default {
     &__image {
       position: absolute;
       bottom: 0;
-      left: 48px;
+      left: 0;
+      // left: 48px;
       z-index: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
   }
+
   &.height260 {
     height: 260px!important;
 

@@ -226,6 +226,10 @@ export default {
       return this.sport && this.sport.terms ? this.sport.terms : '';
     },
 
+    ambassadors() {
+      return this.sport && this.sport.ambasadors ? this.sport.ambasadors : [];
+    },
+
     cards() {
       if (!(this.sport && this.sport.inventories)) {
         return [];
