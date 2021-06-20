@@ -15,17 +15,17 @@ export default [
     title: 'Максим Шмырёв о чужих тренировках',
   },
   {
-    instagram: '@shmirev_max',
+    instagram: '@shmirev_maxim',
     photo: '/images/ambassadors/shmirev.png',
     title: 'Максим Шмырёв о своих подвигах',
   },
   {
-    instagram: '@shmirev_max',
+    instagram: '@shmirev_maximus',
     photo: '/images/ambassadors/shmirev.png',
     title: 'Максим Шмырёв о своих девушках',
   },
   {
-    instagram: '@shmirev_max',
+    instagram: '@shmirev_maximilian',
     photo: '/images/ambassadors/shmirev.png',
     title: 'Максим Шмырёв удивляется, что вы увидели все слайды',
   },

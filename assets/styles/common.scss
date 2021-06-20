@@ -5,6 +5,11 @@ body {
 .el-button {
   &.el-button--primary {
     background-color: $blue;
+
+    &:hover, &:focus {
+      background-color: $blue;
+      color: $white;
+    }
   }
 
   &.wide, &.wide.el-button-default {

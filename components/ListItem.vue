@@ -7,19 +7,21 @@
       <div class="title-block">
         <span class="title"> {{ item.title }} </span>
 
-        <img
-          v-if="item.instagram"
-          class="social-icon"
-          src="/images/instagramm.svg"
-          alt="soc-icon"
-        />
+        <a :href="item.instagram" v-if="item.instagram" target="_blank">
+          <img
+            class="social-icon"
+            src="/images/instagramm.svg"
+            alt="soc-icon"
+          />
+        </a>
 
-        <img
-          v-if="item.profiru"
-          class="social-icon"
-          src="/images/profiru.svg"
-          alt="soc-icon"
-        />
+        <a :href="item.profiru" v-if="item.profiru" target="_blank">
+          <img
+            class="social-icon"
+            src="/images/profiru.svg"
+            alt="soc-icon"
+          />
+        </a>
 
         <div class="rate" v-if="item.rating">
           <img src="/images/star.svg" alt="" />

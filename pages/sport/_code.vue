@@ -95,12 +95,57 @@
                 <a href="#" target="_blank">
                   <el-button class="wide" type="primary" size="default">Купить товары</el-button>
                 </a>
+              </section>
+
+              <section class="section how-to-train">
+                <h2 class="section__title section__title_inverted" :style="{marginBottom: '24px'}">Как тренироваться</h2>
                 
+                <swiper :options="swiperOptions">
+                  <swiper-slide
+                    class="slider-item"
+                    v-for="(slide, index) in howToTrainVideos"
+                    :key="index"
+                  >
+                    <iframe width="100%" height="188" src="https://www.youtube.com/embed/hr72tP9flTs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                  </swiper-slide>
+                      
+                  <div class="swiper-pagination" slot="pagination"></div>
+                </swiper>
+              </section>
+
+              <section class="section lets-train">
+                <img src="/images/ready-icon.svg" alt="ready icon" class="lets-train__icon">
+                <h2 class="section__title lets-train__title">Потренируемся?</h2>
+                <p class="lets-train__description">Поможем выбрать место и найти профессионального тренера.</p>
+                <div class="lets-train__buttons">
+                  <el-button class="wide" type="primary" size="default" @click="showPracticeTab">Найти площадку</el-button>
+                  <el-button class="wide" type="primary" size="default" @click="showPracticeTab">Найти тренера</el-button>
+                </div>
               </section>
             </div>
           </div>
 
-          <div class="panel panel_practice" v-if="tab === 'practice'"></div>
+          <div class="panel panel_practice" v-if="tab === 'practice'">
+            <section class="section">
+              <h2 class="section__title">Выберите площадку</h2>
+              <div class="list-type-selector" @click="map = !map">
+                {{ map ? 'Списком' : 'На карте' }}
+              </div>
+
+              <list-item v-for="(card, index) in printPlatforms" :key="index" :item="card" border />
+              <el-button class="wide" @click="allPlatforms = !allPlatforms">{{ !allPlatforms ? 'Еще' : 'Скрыть' }}</el-button>
+            </section>
+
+            <section class="section">
+              <h2 class="section__title">Выберите тренера</h2>
+              <div class="list-type-selector" @click="map = !map">
+                {{ map ? 'Списком' : 'На карте' }}
+              </div>
+
+              <list-item v-for="(card, index) in printCoaches" :key="index" :item="card" border />
+              <el-button class="wide" @click="allCoaches = !allCoaches">{{ !allCoaches ? 'Еще' : 'Скрыть' }}</el-button>
+            </section>
+          </div>
       </div>
     </div>
   </div>
@@ -108,6 +153,8 @@
 </template>
 
 <script>
+import coaches from '~/data/coaches';
+import platforms from '~/data/platforms';
 import ListItem from "@/components/ListItem";
 import OurAmbassadors from '~/components/OurAmbassadors.vue';
 
@@ -116,7 +163,12 @@ export default {
 
   data() {
     return {
-      tab: "about",
+      tab: 'practice',
+      map: false,
+      coaches,
+      platforms,
+      allPlatforms: false,
+      allCoaches: false,
       rules:
         "<p>Игра происходит на специальном теннисном столе. Посередине стола находится сетка. При игре используются ракетки, состоящие из деревянного основания, покрытого с двух сторон резиновыми накладками разного цвета, обычно ярко-красного и чёрного. Игра происходит на специальном теннисном столе. Посередине стола находится сетка. При игре используются ракетки, состоящие из деревянного основания, покрытого с двух сторон резиновыми накладками разного цвета, обычно ярко-красного и чёрного.</p>",
       rulesShort: true,
@@ -136,7 +188,23 @@ export default {
           description: "Donic Waldner 700 черный",
           price: 720,
         },
-      ]
+      ],
+      howToTrainVideos: [
+        {
+          url: '',
+          text: '',
+        },
+        {
+          url: '',
+          text: '',
+        },
+      ],
+      swiperOptions: {
+        slidesPerView: 1.25,
+        height: 188,
+        spaceBetween: 16,
+        followFinger: true,
+      },
     };
   },
 
@@ -157,6 +225,29 @@ export default {
         })
       }
       return sum;
+    },
+
+    printPlatforms() {
+      if (!this.platforms.length) {
+        return [];
+      }
+
+      if (this.allPlatforms) {
+        return this.platforms;
+      }
+      return this.platforms.slice(0, 3);
+    },
+
+    printCoaches() {
+      if (!this.coaches.length) {
+        return [];
+      }
+
+      if (this.allCoaches) {
+        return this.coaches;
+      }
+
+      return this.coaches.slice(0, 3);      
     }
   },
 
@@ -167,6 +258,17 @@ export default {
         return string.slice(0, 230) + dots;
       }
       return dots;
+    },
+
+    showPracticeTab(type) {
+      this.tab = 'practice';
+      setTimeout(() => {
+        window.scrollTo({
+          top: 615,
+          scroll: 'smooth',
+        })
+        
+      }, 1000);
     }
   },
   components: {
@@ -275,12 +377,27 @@ export default {
   .section {
     margin-bottom: 40px;
 
+    &.how-to-train {
+      padding: 40px 16px;
+      background-color: $primary;
+      margin-left: -16px;
+      margin-right: -16px;
+    }
+
     &__title {
       color: $primary;
       font-size: 24px;
       line-height: 1;
       margin-bottom: 15px;
       font-weight: 700;
+
+      &_inverted {
+        color: $white;
+      }
+
+      .section__title {
+        margin-bottom: 24px;
+      }
     }
 
     &__subtitle {
@@ -319,6 +436,35 @@ export default {
     line-height: 20px;
     font-weight: bold;
     margin-bottom: 16px;
+  }
+
+  .lets-train {
+    &__icon {
+      width: 30px;
+      height: 30px;
+      margin-bottom: 20px;
+    }
+
+    &__description {
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 24px;
+      color: $regulary;
+      margin-bottom: 24px;
+    }
+
+    &__buttons {
+      display: flex;
+    }
+  }
+
+  .list-type-selector {
+    font-size: 14px;
+    line-height: 20px;
+    text-decoration-line: underline;
+    color: $blue;
+    font-weight: bold;
+    margin-bottom: 25px;
   }
 }
 </style>
