@@ -132,8 +132,14 @@
                 {{ map ? 'Списком' : 'На карте' }}
               </div>
 
-              <list-item v-for="(card, index) in printPlatforms" :key="index" :item="card" border />
-              <el-button class="wide" @click="allPlatforms = !allPlatforms">{{ !allPlatforms ? 'Еще' : 'Скрыть' }}</el-button>
+              <template v-if="!map">
+                <list-item v-for="(card, index) in printPlatforms" :key="index" :item="card" border />
+                <el-button class="wide" @click="allPlatforms = !allPlatforms">{{ !allPlatforms ? 'Еще' : 'Скрыть' }}</el-button>
+              </template>
+
+              <div class="map-block" v-else>
+                <map-page />
+              </div>
             </section>
 
             <section class="section">
@@ -157,13 +163,14 @@ import coaches from '~/data/coaches';
 import platforms from '~/data/platforms';
 import ListItem from "@/components/ListItem";
 import OurAmbassadors from '~/components/OurAmbassadors.vue';
+import MapPage from '~/pages/map.vue';
 
 export default {
   name: "SportDetail",
 
   data() {
     return {
-      tab: 'practice',
+      tab: 'about',
       map: false,
       coaches,
       platforms,
@@ -274,6 +281,7 @@ export default {
   components: {
     ListItem,
     OurAmbassadors,
+    MapPage,
   }
 };
 </script>
@@ -465,6 +473,10 @@ export default {
     color: $blue;
     font-weight: bold;
     margin-bottom: 25px;
+  }
+
+  .map-block {
+    height: 466px;
   }
 }
 </style>

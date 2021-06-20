@@ -4,9 +4,15 @@
       class="yaMap"
       :coords="[43.40059, 39.964513]"
       :zoom="16.5"
-      :controls="['zoomControl']"
-    />
-    <div class="search-input-wrapper">
+      :controls="[]"
+    >
+      <ymap-marker
+        markerId="id"
+        :coords="[39.954576, 43.406226]"
+      />
+    </yandex-map>
+    <!--:controls="['zoomControl']"-->
+    <!-- <div class="search-input-wrapper">
       <el-select 
         v-model="selected"
         placeholder="Выберите спорт"
@@ -20,7 +26,7 @@
           :value="item.value"
         />
       </el-select>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -28,28 +34,7 @@
 export default {
   name: 'MapPage',
   data() {
-    return {
-      searchText: '',
-      selected: undefined,
-      options: [
-        {
-          value: 0,
-          label: 'Футбол',
-        },
-        {
-          value: 1,
-          label: 'Баскетбол',
-        },
-        {
-          value: 2,
-          label: 'Воллейбол',
-        },
-        {
-          value: 3,
-          label: 'Литробол',
-        },
-      ]
-    }
+    return {}
   }
 }
 </script>
@@ -57,11 +42,11 @@ export default {
 
 <style lang="scss">
 .map-page {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
+  // position: absolute;
+  // top: 0;
+  // left: 0;
+  width: 100%;
+  height: 100%;
 
   .ymap-container {
     width: 100%;
