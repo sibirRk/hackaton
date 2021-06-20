@@ -5,7 +5,7 @@
     </div>
     <div class="text-content">
       <div class="title-block">
-        <span class="title"> {{ item.title }} </span>
+        <span class="title"> {{ item.title || item.name }} </span>
 
         <a :href="item.instagram" v-if="item.instagram" target="_blank">
           <img
@@ -87,14 +87,22 @@ export default {
     width: 75px;
     height: 75px;
     margin-right: 15px;
+    flex-grow: 0;
+    flex-shrink: 0;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
 
   }
 
   .radius {
-      img {
-        border-radius: 50%;
-      }
+    img {
+      border-radius: 50%;
     }
+  }
 
   .text-content {
     display: flex;
